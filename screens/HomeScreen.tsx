@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
-import { HeaderBackground } from '../components/HeaderBackground/HeaderBackground';
+import { Pictures } from '../components/Pictures/Pictures';
 
 import { View } from '../components/Themed';
 
 export function HomeScreen() {
   return (
     <View style={styles.container}>
-      <HeaderBackground />
+      <Pictures />
     </View>
   );
 }

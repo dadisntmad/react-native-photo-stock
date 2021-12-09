@@ -2,6 +2,8 @@ import { PhotosActionTypes } from '../redux/actions/photos';
 
 export type PhotosState = {
   randomPhotos: RandomPhotoType[];
+  photos: PhotosType[];
+  page: number;
 };
 
 export type RandomPhotoType = {
@@ -9,8 +11,18 @@ export type RandomPhotoType = {
   user: UserType;
 };
 
+export type PhotosType = {
+  id: string;
+  urls: UrlsType;
+  user: UserType;
+};
+
+export type UrlsType = {
+  regular?: string;
+};
+
 export type UserType = {
-  name: string;
+  name?: string;
 };
 
 type setRandomPhoto = {
@@ -18,4 +30,14 @@ type setRandomPhoto = {
   payload: RandomPhotoType[];
 };
 
-export type PhotosActionType = setRandomPhoto;
+type setPhotos = {
+  type: PhotosActionTypes.SET_PHOTOS;
+  payload: PhotosType[];
+};
+
+type setPage = {
+  type: PhotosActionTypes.SET_PAGE;
+  payload: number;
+};
+
+export type PhotosActionType = setRandomPhoto | setPhotos | setPage;
