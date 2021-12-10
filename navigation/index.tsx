@@ -17,6 +17,9 @@ import { HomeScreen } from '../screens/HomeScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import { RootStackParamList, RootTabParamList } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import { DetailedPictureScreen } from '../screens/DetailedPictureScreen';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/reducers';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -35,10 +38,17 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
+  const author = useSelector(({ photos }: RootState) => photos.selectedImage);
+
   return (
     <Stack.Navigator>
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+      <Stack.Screen
+        name="Detailed"
+        component={DetailedPictureScreen}
+        options={{ title: author.user?.name }}
+      />
     </Stack.Navigator>
   );
 }

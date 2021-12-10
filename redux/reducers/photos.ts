@@ -5,6 +5,7 @@ const initialState: PhotosState = {
   randomPhotos: [],
   photos: [],
   page: 1,
+  selectedImage: {},
 };
 
 const photos = (state = initialState, action: PhotosActionType) => {
@@ -25,7 +26,11 @@ const photos = (state = initialState, action: PhotosActionType) => {
         ...state,
         page: action.payload,
       };
-
+    case PhotosActionTypes.SET_SELECTED_IMAGE:
+      return {
+        ...state,
+        selectedImage: action.payload,
+      };
     default:
       return state;
   }

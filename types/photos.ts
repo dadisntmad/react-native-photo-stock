@@ -4,6 +4,7 @@ export type PhotosState = {
   randomPhotos: RandomPhotoType[];
   photos: PhotosType[];
   page: number;
+  selectedImage: SelectedImageType;
 };
 
 export type RandomPhotoType = {
@@ -23,6 +24,19 @@ export type UrlsType = {
 
 export type UserType = {
   name?: string;
+  profile_image?: ProfileImageType;
+};
+
+export type ProfileImageType = {
+  medium: string;
+};
+
+export type SelectedImageType = {
+  id?: string;
+  urls?: UrlsType;
+  likes?: number;
+  created_at?: string;
+  user?: UserType;
 };
 
 type setRandomPhoto = {
@@ -40,4 +54,9 @@ type setPage = {
   payload: number;
 };
 
-export type PhotosActionType = setRandomPhoto | setPhotos | setPage;
+type setSelectedImage = {
+  type: PhotosActionTypes.SET_SELECTED_IMAGE;
+  payload: SelectedImageType;
+};
+
+export type PhotosActionType = setRandomPhoto | setPhotos | setPage | setSelectedImage;
