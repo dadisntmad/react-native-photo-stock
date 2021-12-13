@@ -14,12 +14,13 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import { HomeScreen } from '../screens/HomeScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
+import { BrowseScreen } from '../screens/BrowseScreen';
 import { RootStackParamList, RootTabParamList } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 import { DetailedPictureScreen } from '../screens/DetailedPictureScreen';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/reducers';
+import { ProfileScreen } from '../screens/ProfileScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -88,15 +89,16 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="TabTwo"
-        component={TabTwoScreen}
+        component={BrowseScreen}
         options={{
+          headerShown: false,
           tabBarShowLabel: false,
           tabBarIcon: ({ color }) => <Ionicons name="md-search-sharp" size={30} color={color} />,
         }}
       />
       <BottomTab.Screen
         name="TabThree"
-        component={TabTwoScreen}
+        component={ProfileScreen}
         options={{
           tabBarShowLabel: false,
           tabBarIcon: ({ color }) => <Feather name="user" size={30} color={color} />,

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchPhotos, setPage } from '../../redux/actions/photos';
 import { RootState } from '../../redux/reducers';
 import { HeaderBackground } from '../HeaderBackground/HeaderBackground';
+import { Spinner } from '../Spinner/Spinner';
 import { Picture } from './Picture/Picture';
 
 export const Pictures = () => {
@@ -23,11 +24,7 @@ export const Pictures = () => {
   };
 
   const Loader = () => {
-    return !loading ? (
-      <View>
-        <ActivityIndicator size="small" color="black" />
-      </View>
-    ) : null;
+    return !loading ? <Spinner /> : null;
   };
 
   return (
