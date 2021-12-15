@@ -1,10 +1,12 @@
 import { CategoriesActionTypes } from '../redux/actions/categories';
-import { UrlsType, UserType } from './photos';
+import { SelectedImageType, UrlsType, UserType } from './photos';
 
 export type CategoriesState = {
   categories: CategortType[];
   discoverPhotos: DiscoverType[];
   page: number;
+  selectedImage: SelectedImageType;
+  categoryTitle: string;
 };
 
 export type CategortType = {
@@ -29,4 +31,14 @@ type setPage = {
   payload: number;
 };
 
-export type CategoriesActionType = setDiscoverPhotos | setPage;
+type setSelectedImage = {
+  type: CategoriesActionTypes.SET_SELECTED_IMAGE;
+  payload: SelectedImageType;
+};
+
+type setCategory = {
+  type: CategoriesActionTypes.SET_CATEGORY;
+  payload: string;
+};
+
+export type CategoriesActionType = setDiscoverPhotos | setPage | setSelectedImage | setCategory;

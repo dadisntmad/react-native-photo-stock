@@ -21,6 +21,8 @@ import { DetailedPictureScreen } from '../screens/DetailedPictureScreen';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/reducers';
 import { ProfileScreen } from '../screens/ProfileScreen';
+import { BrowseDetailedScreen } from '../screens/BrowseDetailedScreen';
+import { FoundByCategoryScreen } from '../screens/FoundByCategoryScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -40,6 +42,8 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
   const author = useSelector(({ photos }: RootState) => photos.selectedImage);
+  const owner = useSelector(({ categories }: RootState) => categories.selectedImage);
+  const categoryTitle = useSelector(({ categories }: RootState) => categories.categoryTitle);
 
   return (
     <Stack.Navigator>
@@ -49,6 +53,16 @@ function RootNavigator() {
         name="Detailed"
         component={DetailedPictureScreen}
         options={{ title: author.user?.name }}
+      />
+      <Stack.Screen
+        name="BrowseDetailed"
+        component={BrowseDetailedScreen}
+        options={{ title: owner.user?.name }}
+      />
+      <Stack.Screen
+        name="FoundByCategory"
+        component={FoundByCategoryScreen}
+        options={{ title: categoryTitle }}
       />
     </Stack.Navigator>
   );
@@ -91,6 +105,7 @@ function BottomTabNavigator() {
         name="TabTwo"
         component={BrowseScreen}
         options={{
+          title: '',
           headerShown: false,
           tabBarShowLabel: false,
           tabBarIcon: ({ color }) => <Ionicons name="md-search-sharp" size={30} color={color} />,

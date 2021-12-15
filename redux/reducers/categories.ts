@@ -36,6 +36,8 @@ const initialState: CategoriesState = {
   ],
   discoverPhotos: [],
   page: 1,
+  selectedImage: {},
+  categoryTitle: '',
 };
 
 const categories = (state = initialState, action: CategoriesActionType) => {
@@ -50,6 +52,17 @@ const categories = (state = initialState, action: CategoriesActionType) => {
         ...state,
         page: action.payload,
       };
+    case CategoriesActionTypes.SET_SELECTED_IMAGE:
+      return {
+        ...state,
+        selectedImage: action.payload,
+      };
+    case CategoriesActionTypes.SET_CATEGORY:
+      return {
+        ...state,
+        categoryTitle: action.payload,
+      };
+
     default:
       return state;
   }
