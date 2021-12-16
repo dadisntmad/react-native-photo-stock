@@ -8,6 +8,7 @@ export enum CategoriesActionTypes {
   SET_PAGE = 'CATEGORIES@SET_PAGE',
   SET_SELECTED_IMAGE = 'CATEGORIES@SET_SELECTED_IMAGE',
   SET_CATEGORY = 'CATEGORIES@SET_CATEGORY',
+  SET_SEARCH_VALUE = 'CATEGORIES@SET_SEARCH_VALUE',
 }
 
 export const setDiscoverPhotos = (photos: DiscoverType[]): CategoriesActionType => ({
@@ -28,6 +29,11 @@ export const setSelectedImage = (image: SelectedImageType): CategoriesActionType
 export const setCategory = (term: string): CategoriesActionType => ({
   type: CategoriesActionTypes.SET_CATEGORY,
   payload: term,
+});
+
+export const setSearchValue = (value: string): CategoriesActionType => ({
+  type: CategoriesActionTypes.SET_SEARCH_VALUE,
+  payload: value,
 });
 
 export const fetchDiscoverPhotos = () => async (dispatch: Dispatch<CategoriesActionType>) => {

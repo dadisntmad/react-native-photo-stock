@@ -7,6 +7,7 @@ export type CategoriesState = {
   page: number;
   selectedImage: SelectedImageType;
   categoryTitle: string;
+  searchValue: string;
 };
 
 export type CategortType = {
@@ -41,4 +42,14 @@ type setCategory = {
   payload: string;
 };
 
-export type CategoriesActionType = setDiscoverPhotos | setPage | setSelectedImage | setCategory;
+type setSearchValue = {
+  type: CategoriesActionTypes.SET_SEARCH_VALUE;
+  payload: string;
+};
+
+export type CategoriesActionType =
+  | setDiscoverPhotos
+  | setPage
+  | setSelectedImage
+  | setCategory
+  | setSearchValue;

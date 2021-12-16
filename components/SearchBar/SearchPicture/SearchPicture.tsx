@@ -3,15 +3,15 @@ import { useNavigation } from '@react-navigation/core';
 import { View, Text, ImageBackground, TouchableOpacity } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { DiscoverType } from '../../../types/categories';
-import { setSelectedImage } from '../../../redux/actions/categories';
 
 import styles from './styles';
+import { setSelectedImage } from '../../../redux/actions/categories';
 
-type CategoryPictureProps = {
+type SearchPictureProps = {
   photos: DiscoverType;
 };
 
-export const CategoryPicture = ({ photos }: CategoryPictureProps) => {
+export const SearchPicture = ({ photos }: SearchPictureProps) => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
 

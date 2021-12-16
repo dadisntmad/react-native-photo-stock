@@ -23,6 +23,7 @@ import { RootState } from '../redux/reducers';
 import { ProfileScreen } from '../screens/ProfileScreen';
 import { BrowseDetailedScreen } from '../screens/BrowseDetailedScreen';
 import { FoundByCategoryScreen } from '../screens/FoundByCategoryScreen';
+import { SearchResultScreen } from '../screens/SearchResultScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -44,6 +45,7 @@ function RootNavigator() {
   const author = useSelector(({ photos }: RootState) => photos.selectedImage);
   const owner = useSelector(({ categories }: RootState) => categories.selectedImage);
   const categoryTitle = useSelector(({ categories }: RootState) => categories.categoryTitle);
+  const searchValue = useSelector(({ categories }: RootState) => categories.searchValue);
 
   return (
     <Stack.Navigator>
@@ -52,7 +54,9 @@ function RootNavigator() {
       <Stack.Screen
         name="Detailed"
         component={DetailedPictureScreen}
-        options={{ title: author.user?.name }}
+        options={{
+          title: author.user?.name,
+        }}
       />
       <Stack.Screen
         name="BrowseDetailed"
@@ -63,6 +67,11 @@ function RootNavigator() {
         name="FoundByCategory"
         component={FoundByCategoryScreen}
         options={{ title: categoryTitle }}
+      />
+      <Stack.Screen
+        name="SearchResult"
+        component={SearchResultScreen}
+        options={{ title: searchValue }}
       />
     </Stack.Navigator>
   );

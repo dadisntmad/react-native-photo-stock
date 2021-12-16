@@ -38,6 +38,7 @@ const initialState: CategoriesState = {
   page: 1,
   selectedImage: {},
   categoryTitle: '',
+  searchValue: '',
 };
 
 const categories = (state = initialState, action: CategoriesActionType) => {
@@ -62,7 +63,11 @@ const categories = (state = initialState, action: CategoriesActionType) => {
         ...state,
         categoryTitle: action.payload,
       };
-
+    case CategoriesActionTypes.SET_SEARCH_VALUE:
+      return {
+        ...state,
+        searchValue: action.payload,
+      };
     default:
       return state;
   }
