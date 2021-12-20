@@ -1,13 +1,14 @@
 import React from 'react';
-import { useNavigation } from '@react-navigation/core';
 import { View, TextInput } from 'react-native';
 import { RootState } from '../../redux/reducers';
+import { setSearchValue } from '../../redux/actions/categories';
+
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigation } from '@react-navigation/core';
 
 import { EvilIcons } from '@expo/vector-icons';
 
 import styles from './styles';
-import { setSearchValue } from '../../redux/actions/categories';
 
 export const SearchBar = () => {
   const dispatch = useDispatch();

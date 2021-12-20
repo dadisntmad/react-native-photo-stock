@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { View, Text, ImageBackground } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
 import { fetchRandomPhoto } from '../../redux/actions/photos';
 import { RootState } from '../../redux/reducers';
+
+import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './styles';
 

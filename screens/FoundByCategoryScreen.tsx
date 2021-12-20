@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import { FlatList, ImageBackground, TouchableOpacity, Text } from 'react-native';
 import instance from '../API/api';
-import { CategoryPicture } from '../components/Categories/CategoryPicture/CategoryPicture';
 import { Spinner } from '../components/Spinner/Spinner';
-import { setPage } from '../redux/actions/categories';
+import { setPage, setSelectedImage } from '../redux/actions/categories';
 import { RootState } from '../redux/reducers';
 import { DiscoverType } from '../types/categories';
+import { PictureGrid } from '../components/Common/PictureGrid';
+import { SelectedImageType } from '../types/photos';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigation } from '@react-navigation/core';
+
+import styles from '../components/Common/styles';
 
 export const FoundByCategoryScreen = () => {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
   const categoryTitle = useSelector(({ categories }: RootState) => categories.categoryTitle);
   const page = useSelector(({ categories }: RootState) => categories.page);
   const [loading, setLoading] = useState(false);
@@ -42,11 +48,24 @@ export const FoundByCategoryScreen = () => {
     return !loading ? <Spinner /> : null;
   };
 
+  const onOpenPicture = (photoObj: SelectedImageType) => () => {
+    navigation.navigate('BrowseDetailed');
+    dispatch(setSelectedImage(photoObj));
+  };
+
   return (
     <FlatList
       data={pic}
       renderItem={({ item }) => {
-        return <CategoryPicture photos={item} />;
+        return (
+          <PictureGrid>
+            <TouchableOpacity activeOpacity={0.9} onPress={onOpenPicture(item)}>
+              <ImageBackground source={{ uri: item.urls.regular }} style={styles.imageGrid}>
+                <Text style={styles.authorGrid}>{item.user.name}</Text>
+              </ImageBackground>
+            </TouchableOpacity>
+          </PictureGrid>
+        );
       }}
       showsVerticalScrollIndicator={false}
       keyExtractor={(item) => item.id}

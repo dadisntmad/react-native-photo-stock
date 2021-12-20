@@ -1,12 +1,12 @@
 import React from 'react';
-import { useNavigation } from '@react-navigation/core';
 import { View, Text, ScrollView, ImageBackground, TouchableOpacity } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-
 import { RootState } from '../../redux/reducers';
+import { setCategory } from '../../redux/actions/categories';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigation } from '@react-navigation/core';
 
 import styles from './styles';
-import { setCategory } from '../../redux/actions/categories';
 
 export const Categories = () => {
   const dispatch = useDispatch();

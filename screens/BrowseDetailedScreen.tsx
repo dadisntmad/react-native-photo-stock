@@ -1,9 +1,10 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, Dimensions } from 'react-native';
-import moment from 'moment';
+
+import { RootState } from '../redux/reducers';
 
 import { useSelector } from 'react-redux';
-import { RootState } from '../redux/reducers';
+import moment from 'moment';
 
 import { AntDesign } from '@expo/vector-icons';
 
